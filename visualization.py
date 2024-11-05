@@ -1,10 +1,17 @@
+import os
+import torch
 import matplotlib.pyplot as plt
+import numpy as np
 
-def plot_saliency_maps(images, saliency_maps):
-    # Convert images and saliency maps to numpy for plotting
+import strategy
+
+# Create an images directory if it doesn't exist
+if not os.path.exists('images'):
+    os.makedirs('images')
+
+def plot_saliency_maps(images, saliency_maps, client_id):
     images = images.cpu().numpy()
     saliency_maps = saliency_maps.cpu().detach().numpy()
-
     num_images = min(len(images), 5)  # Plot a maximum of 5 images
     plt.figure(figsize=(15, 5))
 
@@ -20,11 +27,10 @@ def plot_saliency_maps(images, saliency_maps):
         plt.axis('off')
 
     plt.tight_layout()
-    plt.show()
+    plt.savefig(f'images/saliency_maps_client_{client_id}.png')  # Save the figure
+    plt.close()  # Close the figure to free memory
 
-
-def plot_weight_adjustments(original_weights, adjusted_weights):
-    # Flatten the weights for histogram
+def plot_weight_adjustments(original_weights, adjusted_weights, client_id):
     original_flat = torch.cat([param.data.view(-1) for param in original_weights]).cpu().numpy()
     adjusted_flat = torch.cat([param.data.view(-1) for param in adjusted_weights]).cpu().numpy()
 
@@ -45,4 +51,40 @@ def plot_weight_adjustments(original_weights, adjusted_weights):
     plt.legend()
 
     plt.tight_layout()
-    plt.show()
+    plt.savefig(f'images/weight_adjustments_client_{client_id}.png')  # Save the figure
+    plt.close()  # Close the figure to free memory
+
+
+def plot_federated_learning_metrics(strategy):
+    plt.style.use('seaborn')
+    plt.figure(figsize=(15, 10))
+
+    plt.subplot(3, 1, 1)
+    plt.plot(strategy.global_history['round'], strategy.global_history['loss'])
+    plt.title('Global Loss Over Rounds')
+    plt.xlabel('Round')
+    plt.ylabel('Loss')
+
+    plt.subplot(3, 1, 2)
+    plt.plot(strategy.global_history['round'], strategy.global_history['accuracy'])
+    plt.title('Global Accuracy Over Rounds')
+    plt.xlabel('Round')
+    plt.ylabel('Accuracy')
+
+    plt.subplot(3, 1, 3)
+    plt.plot(strategy.global_history['round'], strategy.global_history['weight_adjustments'])
+    plt.title('Average Weight Adjustments Over Rounds')
+    plt.xlabel('Round')
+    plt.ylabel('Weight Adjustment')
+
+    plt.tight_layout()
+    plt.savefig('images/federated_learning_metrics.png')  # Save the figure
+    plt.close()  
+    
+def analyze_results(strategy):
+    print("Federated Learning Results:")
+    print(f"Final Accuracy: {strategy.global_history['accuracy'][-1]:.4f}")
+    print(f"Final Loss: {strategy.global_history['loss'][-1]:.4f}")
+    print(f"Average Weight Adjustment: {np.mean(strategy.global_history['weight_adjustments']):.4f}")
+
+plot_federated_learning_metrics(strategy)
