@@ -50,7 +50,7 @@ data/                          # folder to store data
 images/                        # folder to store visualizations
 requirements.txt               # requirements
 readme.md
-main.py                # Entry point for the application
+main.py                        # Entry point for the application
 src/
     ├── model.py               # Neural network architecture
     ├── client.py              # Federated client implementation
