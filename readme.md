@@ -45,17 +45,21 @@ Before you begin, ensure you have met the following requirements:
 The project is organized as follows:
 
 ```
+__init__.py
+data/                          # folder to store data
+images/                        # folder to store visualizations
+requirements.txt               # requirements
+readme.md
+src/
+    ├── main.py                # Entry point for the application
+    ├── model.py               # Neural network architecture
+    ├── client.py              # Federated client implementation
+    ├── strategy.py            # Federated learning strategy
+    ├── data_loaders.py        # call load data from utils 
+    ├── utils.py               # Utility functions for data loading and training
+    ├── visualization.py       # Functions for plotting and visualizing results
+    └── blockchain.py          # Blockchain interaction logic
 
-├── __init__.py
-├── data/                  # folder to store data
-├── images/                # folder to store visualizations
-├── main.py                # Entry point for the application
-├── model.py               # Neural network architecture
-├── client.py              # Federated client implementation
-├── strategy.py            # Federated learning strategy
-├── utils.py               # Utility functions for data loading and training
-├── visualization.py       # Functions for plotting and visualizing results
-└── blockchain.py          # Blockchain interaction logic
 ```
 
 ## Usage
@@ -104,4 +108,4 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 ---
 
-Feel free to modify any sections to better fit your project's specifics or to add additional details as needed!
+Feel free to use, modify or contribute to any sections to better fit your project's specifics or to add additional details as needed!

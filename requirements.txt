@@ -3,5 +3,8 @@ flwr_datasets[vision]
 torch
 torchvision
 matplotlib
+seaborn
 shap
 lime
+black
+web3
