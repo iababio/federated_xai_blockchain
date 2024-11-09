@@ -1,3 +1,5 @@
+[![Python application](https://github.com/iababio/federated_xai_blockchain/actions/workflows/python-app.yml/badge.svg)](https://github.com/iababio/federated_xai_blockchain/actions/workflows/python-app.yml)
+
 # Federated Learning with Explainable AI and Blockchain Integration
 
 ## Project Overview
