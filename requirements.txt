@@ -8,3 +8,4 @@ shap
 lime
 black
 web3
+pytest
