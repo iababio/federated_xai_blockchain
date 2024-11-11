@@ -40,7 +40,7 @@ Before you begin, ensure you have met the following requirements:
    pip install -r requirements.txt
    ```
 
-3. Ensure you have a local Ethereum node running (e.g., Ganache) to interact with the blockchain. Update the `blockchain.py` file with the correct provider URL all necessary credential.
+3. Ensure you have an Ethereum node running (e.g., Ganache) to interact with the blockchain. Update the `blockchain.py` file with the correct provider URL all necessary credential.
 
 ## Project Structure
 
